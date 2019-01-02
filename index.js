@@ -1,6 +1,6 @@
-var BAR_PAD = 10;
-var BAR_WIDTH = 5;
-var MAX_BARS = 70;
+var BAR_PAD = 5;
+var BAR_WIDTH = 10;
+var MAX_BARS = 50;
 var MAX_BG_SCALE = 20;
 var SMOOTHING_SAMPLES = 10;
 
@@ -23,11 +23,11 @@ hot_edge.onmouseleave = function() {
   player.classList.remove("player_shown");
 };
 
-canvas.width = window.innerWidth * 0.8;
+canvas.width = window.innerWidth * 0.5;
 canvas.height = window.innerHeight * 0.4;
 
 window.onresize = function() {
-  canvas.width = window.innerWidth * 0.8;
+  canvas.width = window.innerWidth * 0.5;
   canvas.height = window.innerHeight * 0.4;
 }
 
@@ -45,11 +45,7 @@ function draw_bars(values) {
     var h = v * height;
     var y = height / 2 - h / 2;
     ctx.beginPath();
-    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-    ctx.shadowBlur = 8;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 4;
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
+    ctx.strokeStyle = "rgba(255, 255, 255, 1)";
     ctx.lineWidth = BAR_WIDTH;
     ctx.lineCap = 'round';
     ctx.moveTo(x, y);
@@ -91,10 +87,7 @@ function mainloop() {
 }
 
 setTimeout(function() {
-  // player.src = URL.createObjectURL(this.files[0]);
   player.load();
-  // sfbutton.classList.add("moveup");
-
   audioCtx = new AudioContext();
   analyser = audioCtx.createAnalyser();
   source = audioCtx.createMediaElementSource(player);
@@ -103,4 +96,4 @@ setTimeout(function() {
 
   player.play();
   mainloop();
-});
+},1000);
