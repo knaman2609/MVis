@@ -13,6 +13,7 @@ body {
 }
 
 .player {
+    display: none;
 	position: absolute;
 	bottom: -32px;
 	width: 100%;
