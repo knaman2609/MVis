@@ -86,7 +86,7 @@ function mainloop() {
   requestAnimationFrame(mainloop);
 }
 
-setTimeout(function() {
+document.querySelector("body").addEventListener("mouseover", function() {
   player.load();
   audioCtx = new AudioContext();
   analyser = audioCtx.createAnalyser();
@@ -96,4 +96,4 @@ setTimeout(function() {
 
   player.play();
   mainloop();
-},1000);
+});
