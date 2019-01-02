@@ -7,15 +7,14 @@
 
     <div id="bg" class="bg"></div>
     <div id="hot_edge">
-        <audio id="player" class="player player_shown" controls></audio>
-        <input id="music" type="file" name="music" accept="audio/*">
+	      <audio  id="player" class="player player_shown" controls autoplay>
+		        <source src="https://raw.githubusercontent.com/knaman2609/MVis/gh-pages/Sci.mp3" type="audio/mp3">
+	      </audio>
     </div>
-    <label id="sfl" class="select_file" for="music">Select File</label>
 
     <canvas id="music_display">
 	      ERROR
     </canvas>
-    <script src="index.js"></script>
-    <!-- <p id="debug">DBG</p> -->
+
 </body>
 </html>
