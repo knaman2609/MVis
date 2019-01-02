@@ -16,91 +16,91 @@ setTimeout(function() { player.classList.remove("player_shown"); }, 2500);
 
 var hot_edge = document.getElementById("hot_edge");
 hot_edge.onmouseenter = function() {
-	player.classList.add("player_shown");
+  player.classList.add("player_shown");
 };
 
 hot_edge.onmouseleave = function() {
-	player.classList.remove("player_shown");
+  player.classList.remove("player_shown");
 };
 
 canvas.width = window.innerWidth * 0.8;
 canvas.height = window.innerHeight * 0.4;
 
 window.onresize = function() {
-	canvas.width = window.innerWidth * 0.8;
-	canvas.height = window.innerHeight * 0.4;
+  canvas.width = window.innerWidth * 0.8;
+  canvas.height = window.innerHeight * 0.4;
 }
 
 function draw_bars(values) {
-	var len = values.length - (~~(values.length / MAX_BARS)*4);
-	var normFac = 255;
-	var maxValue = normFac;
-	var istep = ~~(len / MAX_BARS);
-	var step = canvas.width / MAX_BARS;
-	var x = BAR_WIDTH;
-	var height = (canvas.height - (BAR_PAD * 2));
-	
-	for (var i = 0; i < len; i+=istep) {
-		var v = (values[i] / maxValue);
-		var h = v * height;
-		var y = height / 2 - h / 2;
-		ctx.beginPath();
-		ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-		ctx.shadowBlur = 8;
-		ctx.shadowOffsetX = 0;
-		ctx.shadowOffsetY = 4;
-		ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
-		ctx.lineWidth = BAR_WIDTH;
-		ctx.lineCap = 'round';
-		ctx.moveTo(x, y);
-		ctx.lineTo(x, y+h);
-		ctx.stroke();
-		x += step;
-	}
-	
-	// Background size change with bass
-	var fac = 0.0;
-	var div = 0;
-	for (var i = 0; i < len-SMOOTHING_SAMPLES; i++) {
-		var avgN = 0.0;
-		for (var j = 0; j < SMOOTHING_SAMPLES; j++) {
-			avgN += Math.abs(values[i+j] / maxValue * 2.0);
-		}
-		avgN /= SMOOTHING_SAMPLES;
+  var len = values.length - (~~(values.length / MAX_BARS)*4);
+  var normFac = 255;
+  var maxValue = normFac;
+  var istep = ~~(len / MAX_BARS);
+  var step = canvas.width / MAX_BARS;
+  var x = BAR_WIDTH;
+  var height = (canvas.height - (BAR_PAD * 2));
 
-		fac += avgN;
-		div++;
-	}
-	fac /= div;
-	fac *= MAX_BG_SCALE;
-	
-	var szW = ~~(150+fac);
-	var szH = ~~(100+fac);
-	var sz = szW.toString()+"% "+szH.toString()+"%";
-	bg.style.backgroundSize=sz;
+  for (var i = 0; i < len; i+=istep) {
+    var v = (values[i] / maxValue);
+    var h = v * height;
+    var y = height / 2 - h / 2;
+    ctx.beginPath();
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 8;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 4;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
+    ctx.lineWidth = BAR_WIDTH;
+    ctx.lineCap = 'round';
+    ctx.moveTo(x, y);
+    ctx.lineTo(x, y+h);
+    ctx.stroke();
+    x += step;
+  }
+
+  // Background size change with bass
+  var fac = 0.0;
+  var div = 0;
+  for (var i = 0; i < len-SMOOTHING_SAMPLES; i++) {
+    var avgN = 0.0;
+    for (var j = 0; j < SMOOTHING_SAMPLES; j++) {
+      avgN += Math.abs(values[i+j] / maxValue * 2.0);
+    }
+    avgN /= SMOOTHING_SAMPLES;
+
+    fac += avgN;
+    div++;
+  }
+  fac /= div;
+  fac *= MAX_BG_SCALE;
+
+  var szW = ~~(150+fac);
+  var szH = ~~(100+fac);
+  var sz = szW.toString()+"% "+szH.toString()+"%";
+  bg.style.backgroundSize=sz;
 }
 
 function mainloop() {
-	var fbc = new Uint8Array(analyser.frequencyBinCount);
-	analyser.getByteFrequencyData(fbc);
-	
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	draw_bars(fbc);
-	
-	requestAnimationFrame(mainloop);
+  var fbc = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(fbc);
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  draw_bars(fbc);
+
+  requestAnimationFrame(mainloop);
 }
 
-fileTag.onchange = function(e) {
-	player.src = URL.createObjectURL(this.files[0]);
-	player.load();
-	sfbutton.classList.add("moveup");
-	
-	audioCtx = new AudioContext();
-	analyser = audioCtx.createAnalyser();
-	source = audioCtx.createMediaElementSource(player);
-	source.connect(analyser);
-	analyser.connect(audioCtx.destination);
+setTimeout(function() {
+  // player.src = URL.createObjectURL(this.files[0]);
+  player.load();
+  // sfbutton.classList.add("moveup");
 
-	player.play();
-	mainloop();
-};
+  audioCtx = new AudioContext();
+  analyser = audioCtx.createAnalyser();
+  source = audioCtx.createMediaElementSource(player);
+  source.connect(analyser);
+  analyser.connect(audioCtx.destination);
+
+  player.play();
+  mainloop();
+});
