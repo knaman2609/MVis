@@ -1,8 +1,8 @@
 var BAR_PAD = 5;
 var BAR_WIDTH = 10;
 var MAX_BARS = 50;
-var MAX_BG_SCALE = 20;
-var SMOOTHING_SAMPLES = 10;
+var MAX_BG_SCALE = 5;
+var SMOOTHING_SAMPLES = 0.5;
 
 var sfbutton = document.getElementById("sfl");
 var bg = document.getElementById("bg");
@@ -72,7 +72,9 @@ function draw_bars(values) {
 
   var szW = ~~(150+fac);
   var szH = ~~(100+fac);
-  var sz = szW.toString()+"% "+szH.toString()+"%";
+
+  var sz = szW.toString() +"% "+szH.toString() + "%";
+
   bg.style.backgroundSize=sz;
 }
 
