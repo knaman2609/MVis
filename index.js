@@ -86,13 +86,13 @@ function mainloop() {
   requestAnimationFrame(mainloop);
 }
 
-document.querySelector("body").addEventListener("mouseover", function() {
+document.querySelector("body").addEventListener("click", function() {
   if (window.playing) {
     return;
   }
 
   window.playing = true;
-
+  
   player.load();
   audioCtx = new AudioContext();
   analyser = audioCtx.createAnalyser();
