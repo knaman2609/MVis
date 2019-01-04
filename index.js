@@ -70,8 +70,8 @@ function draw_bars(values) {
   fac /= div;
   fac *= MAX_BG_SCALE;
 
-  var szW = ~~(150+fac);
-  var szH = ~~(100+fac);
+  var szW = ~~(110+fac);
+  var szH = ~~(105+fac);
 
   var sz = szW.toString() +"% "+szH.toString() + "%";
 
