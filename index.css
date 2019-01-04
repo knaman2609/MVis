@@ -70,11 +70,11 @@ body {
 .bg {
 	position: absolute;
 	
-	-webkit-filter: blur(4px);
-	-moz-filter: blur(4px);
-	-o-filter: blur(4px);
-	-ms-filter: blur(4px);
-	filter: blur(4x);
+	/* -webkit-filter: blur(2px); */
+	/* -moz-filter: blur(2px); */
+	/* -o-filter: blur(2px); */
+	/* -ms-filter: blur(2px); */
+	/* filter: blur(2x); */
 
 	height: 110%;
 	width: 105%;
