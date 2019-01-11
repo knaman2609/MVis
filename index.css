@@ -69,18 +69,18 @@ body {
 .bg {
 	position: absolute;
 	
-	/* -webkit-filter: blur(2px); */
-	/* -moz-filter: blur(2px); */
-	/* -o-filter: blur(2px); */
-	/* -ms-filter: blur(2px); */
-	/* filter: blur(2x); */
+	-webkit-filter: blur(2px); 
+	-moz-filter: blur(2px);
+	-o-filter: blur(2px); 
+	-ms-filter: blur(2px);
+	filter: blur(2x); 
 
 	height: 110%;
 	width: 105%;
 	left: -5%;
 	top: -5%;
 	background : url(
-  https://images.unsplash.com/photo-1522124624696-7ea32eb9592c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
+https://images.unsplash.com/photo-1546976336-1c01f06de9f7?ixlib=rb-1.2.1&auto=format&fit=crop&w=2534&q=80
   );
 
 	background-position: center;
